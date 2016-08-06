@@ -3,6 +3,7 @@ package com.hand.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.hand.entity.Actor;
 import com.hand.entity.Adress;
@@ -19,6 +20,6 @@ public interface Userdao {
 	
 	public ResultSet get(Connection conn,Actor actor) throws SQLException;
 	
-	public ResultSet show(Connection conn) throws SQLException;
+	public List<Film> show() throws SQLException;
 	
 }

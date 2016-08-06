@@ -4,6 +4,8 @@ public class Film extends language_identity{
 	private Long film_id;
 	private String title;
 	private String description;
+	private long languageId;
+	private String languageName;
 	
 	public Long getFilm_id() {
 		return film_id;
@@ -23,8 +25,16 @@ public class Film extends language_identity{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	public String toString() {
-		return "Film [film_id=" + film_id + ", title=" + title + ", description=" + description + "]";
+	public long getLanguageId() {
+		return languageId;
+	}
+	public void setLanguageId(long languageId) {
+		this.languageId = languageId;
+	}
+	public String getLanguageName() {
+		return languageName;
+	}
+	public void setLanguageName(String languageName) {
+		this.languageName = languageName;
 	}
 }

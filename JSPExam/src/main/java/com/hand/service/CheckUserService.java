@@ -2,11 +2,12 @@ package com.hand.service;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.util.List;
 
 import com.hand.dao.Userdao;
 import com.hand.dao.impl.UserDaoimpl;
 import com.hand.entity.Actor;
-
+import com.hand.entity.Film;
 import com.hand.util.ConnectionFactory;
 
 public class CheckUserService {
@@ -19,8 +20,6 @@ public class CheckUserService {
 			conn.setAutoCommit(false);
 			
 			ResultSet resultSet = userDao.get(conn, actor);
-			ResultSet resultSet1 = userDao.show(conn);
-			
 			
 			while(resultSet.next()){
 				return true;

@@ -4,6 +4,7 @@ import java.sql.Connection;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,11 +13,11 @@ import com.hand.dao.Userdao;
 import com.hand.entity.Actor;
 import com.hand.entity.Adress;
 import com.hand.entity.Film;
+import com.hand.util.ConnectionFactory;
 
 
 
 public  class UserDaoimpl implements Userdao {
-
 	/**
 	 * 保存用户信息
 	 */
@@ -52,62 +53,29 @@ public  class UserDaoimpl implements Userdao {
 	public ResultSet get(Connection conn, Actor actor) throws SQLException {
 		PreparedStatement ps = conn.prepareStatement("select * from customer where first_name =? ");
 		ps.setString(1, actor.getFirst_name());
-		
-		
 		return ps.executeQuery();
 	}
 
 
-	public ResultSet show(Connection conn) throws SQLException {
-		
-			         List<Film> list =new ArrayList<Film>();
-			         
-			         PreparedStatement psmt=null;
-			         ResultSet rs=null;
-			         try {
-			             Class.forName("com.mysql.jdbc.Driver");
-			         } catch (ClassNotFoundException e) {
-			             e.printStackTrace();
-			         }
-			         
-			         try {
-			            
-			             String sql="select film_id,title,description from film";
-			             psmt=conn.prepareStatement(sql);
-			             rs=psmt.executeQuery();
-			             
-			             while(rs.next())
-			             {
-			               
-			                 Film fl=new Film();
-			                 list.add(fl);
-			             }
-			             
-			         } catch (SQLException e) {
-			             e.printStackTrace();
-			         }finally
-			         {
-			             try {
-			                 if(rs!=null)
-			                 {
-			                     rs.close();
-			                 }
-			                 if(psmt!=null)
-			                 {
-			                     psmt.close();
-			                 }
-			                 if(conn!=null)
-			                 {
-			                     conn.close();
-			                 }
-			             } catch (SQLException e) {
-			                 e.printStackTrace();
-			             }
-			         }
-					return rs;
-			         
-			     }
+	public List<Film> show() throws SQLException {
+		Connection conn = ConnectionFactory.getInstance().makeConnection();
+		List<Film> list = new LinkedList<Film>();
+		PreparedStatement ps = conn.prepareStatement("select f.film_id,f.title,f.description,l.name from film f left join language l on f.language_id = l.language_id");
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			Film film = new Film();
+			film.setFilm_id(rs.getLong(1));
+			film.setTitle(rs.getString(2));
+			film.setDescription(rs.getString(3));
+			film.setLanguageName(rs.getString(4));
+			list.add(film);
+		}
+		rs.close();
+		ps.close();
+		conn.close();
+		return list;
 	}
+}
 
 	
 

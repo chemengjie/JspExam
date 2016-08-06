@@ -23,6 +23,7 @@ body{
 您提交的信息为：<br/>
 用户名：<%= request.getParameter("uname") %><br/>
 <a href="<%=request.getContextPath() %>/servlet/login.jsp">返回登录界面</a>
+<a href="<%= request.getContextPath() %>/ShowFilmServlet">进入电影表单</a>
 </div>
 </body>
 </html>
