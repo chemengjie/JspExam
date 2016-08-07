@@ -1,6 +1,7 @@
 <html>
 <body>
-<h2>Hello World!</h2>
-<a href ="http://localhost:8080/JSPExam/servlet/login.jsp">please click here</a>
+<h2>Welcome</h2>
+<a href ="http://localhost:8080/JSPExam/servlet/login.jsp">login</a>
+<a href = "http://localhost:8080/JSPExam/permission/ShowFilmServlet">filmlist</a>
 </body>
 </html>

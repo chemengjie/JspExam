@@ -1,4 +1,5 @@
 README
 首先命令行运行服务器 mvn jetty:run
 然后浏览器访问 http://localhost:8080/JSPExam/index.jsp
+先点击filmlist检测过滤器功能
 配置文件位于 java Resources 文件夹下面的src/main/resources

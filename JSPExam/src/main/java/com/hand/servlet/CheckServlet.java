@@ -53,6 +53,7 @@ public class CheckServlet extends HttpServlet {
 			boolean bool = cku.check(actor);
 			
 			if(bool){
+				request.getSession().setAttribute("flag", "success");
 				forward = "/servlet/success.jsp";	
 			}else{
 				request.setAttribute("msg","用户名输入错误，请重新输入！");

@@ -18,7 +18,7 @@ public class ShowFilmServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Film> list = filmService.queryAll();
 		request.setAttribute("films", list);
-		request.getRequestDispatcher("servlet/filmlist.jsp").forward(request, response);
+		request.getRequestDispatcher("/permission/filmlist.jsp").forward(request, response);
 	}
 
 }
